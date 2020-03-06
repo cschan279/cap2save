@@ -3,15 +3,18 @@
 import cv2
 import numpy as np
 
+
+from utils import rfilter
+from utils import cam
 ######################################################
 #size:(240, 320, 3) ->(1080,1440,3) / (960,1280,3)
 
 
-roi = (0,100, 1920, 980)
-arealimit = 50
-lower_bounds = np.array([0, 0, 100])
-upper_bounds = np.array([40, 40, 255])
-
 ######################################################
 
-
+if __name__ == "__main__":
+    cam.start()
+    while cam.running:
+        trig, img = rfliter(cam.frame)
+        if trig:
+            
