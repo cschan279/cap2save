@@ -6,12 +6,23 @@ import numpy as np
 
 cv2.namedWindow("Thermo", cv2.WINDOW_NORMAL)
 
-
-r_size = [960, 1920, 3]
-rimg = np.zeros(r_size, np.uint8)
-
 bw, bh = 1280, 960
 sw, sh = 640,480
+
+r_size = [960, 1920, 3]
+
+rimg = np.zeros(r_size, np.uint8)
+
+msg1 = "Press 'Esc' to escape"
+msg2 = "Press 'q' to clear"
+cv2.putText(rimg, msg1, (bw, 150), 
+            cv2.FONT_HERSHEY_DUPLEX,1, 
+            (0, 0, 255), 1, cv2.LINE_AA)
+cv2.putText(rimg, msg2, (bw, 200), 
+            cv2.FONT_HERSHEY_DUPLEX,1, 
+            (0, 0, 255), 1, cv2.LINE_AA)
+
+
 #480:640
 #bg[480:1080, 1100:1900] = rect
 
@@ -44,7 +55,7 @@ def updatebig(src):
 def updateText(txt):
     global r_size, rimg, bw
     w = r_size[1] - bw
-    h = 200
+    h = 100
     cover = np.zeros([h, w, 3], np.uint8)
     #(影像, 文字, 座標, 
     # 字型, 大小, 
@@ -58,7 +69,7 @@ def updateText(txt):
 def clearText():
     global r_size, rimg, bw
     w = r_size[1] - bw
-    h = 200
+    h = 100
     cover = np.zeros([h, w, 3], np.uint8)
     rimg[0:h, bw:r_size[1]] = cover
     return

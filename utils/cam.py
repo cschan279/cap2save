@@ -22,7 +22,8 @@ def updateframe():
     exit = (k == 27)
     if k == ord('q'):
         display.clearsmall()
-        #display.clearText()
+        display.clearText()
+        var.savImg.dir_reset()
     return r and not exit
 
 def loop():
@@ -30,6 +31,8 @@ def loop():
     while running:
         running = updateframe()
     print('cam loop exit')
+    cap.release()
+    print('cam released')
     return
 
 def start():

@@ -22,6 +22,9 @@ class Saveimg:
         
         return
     
+    def dir_reset(self):
+        self.save_dir = None
+        return
     
     def dir_release(self):
         if (time.time() - self.lastsave) >= self.hold_gap:
@@ -40,7 +43,7 @@ class Saveimg:
         else:
             # new folder
             self.save_dir = os.path.join(self.base_dir, timestamp())
-            os.mkdir(self.save_dir)
+            os.makedirs(self.save_dir)
             self.save(img)
             return False
     
