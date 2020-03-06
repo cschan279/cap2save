@@ -14,7 +14,7 @@ else:
 beep_freq = 1000 # Beep sound frequency in Hz
 beep_duration = 800 # Beep sound duration in ms
 ######################################################
-def alertsound()
+def alertsound():
     if os.name != 'posix':
         winsound.Beep(beep_freq, beep_duration) # for window
     else:

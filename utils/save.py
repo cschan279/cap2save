@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from utils import var
+from utils import sound
 import cv2
 import os
 import time
 
-def timestamp(pattern='{}'):
-    return pattern.format(time.strftime('%y-%m-%d_%H-%M-%S'))
+def timestamp(pattern='{}', strformat='%y-%m-%d_%H-%M-%S'):
+    return pattern.format(time.strftime(strformat))
 
 
 class Saveimg:
@@ -31,10 +32,13 @@ class Saveimg:
 
     def save_new(self, img):
         if self.save_dir:
-            if timecount():
+            # old folder
+            if self.timecount():
+                # save 1 img every second
                 self.save(img)
-                return True
+            return True
         else:
+            # new folder
             self.save_dir = os.path.join(self.base_dir, timestamp())
             os.mkdir(self.save_dir)
             self.save(img)
@@ -47,10 +51,11 @@ class Saveimg:
         else:
             return False
     
-    def save(img):
+    def save(self, img):
         try:
             fname = os.path.join(self.save_dir, timestamp('{}.jpg'))
-            cv2.imsave(fname, img)
+            cv2.imwrite(fname, img)
             self.lastsave = time.time()
+            sound.alertsound()
         except Exception as e:
             print(e)

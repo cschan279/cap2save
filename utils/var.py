@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
+import numpy as np
 
 src_img = np.zeros([100, 100, 3], dtype=np.uint8)
 big_img = np.zeros([100, 100, 3], dtype=np.uint8)
