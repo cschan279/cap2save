@@ -10,7 +10,7 @@ from utils import save
 from utils import display
 ######################################################
 #size:(240, 320, 3) ->(1080,1440,3) / (960,1280,3)
-
+strformat='Last trigger: %d/%m/%y %H:%M:%S'
 
 ######################################################
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
             if not savImg.save_new(img):
                 # new folder created
                 display.updatesmall(img)
-                display.updateText(save.timestamp(strformat='%d/%m/%y %H:%M:%S'))
+                display.updateText(save.timestamp(strformat=strformat))
         else:
             if savImg.dir_release():
                 display.clearsmall()

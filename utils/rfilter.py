@@ -18,7 +18,7 @@ draw = False
 def checkimg(img):
     global arealimit, lower_bounds, upper_bounds, draw
     
-    p_img = img.copy()
+    p_img = cv2.resize(img, (320, 240))
     mask = cv2.inRange(p_img, lower_bounds, upper_bounds)
     _, contours,_ = cv2.findContours(mask, 
                                   cv2.RETR_EXTERNAL, 

@@ -7,7 +7,7 @@ import numpy as np
 cv2.namedWindow("Thermo", cv2.WINDOW_NORMAL)
 
 
-r_size = [1060, 1920, 3]
+r_size = [960, 1920, 3]
 rimg = np.zeros(r_size, np.uint8)
 
 bw, bh = 1280, 960

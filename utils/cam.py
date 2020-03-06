@@ -22,7 +22,7 @@ def updateframe():
     exit = (k == 27)
     if k == ord('q'):
         display.clearsmall()
-        display.clearText()
+        #display.clearText()
     return r and not exit
 
 def loop():
