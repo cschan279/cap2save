@@ -5,13 +5,25 @@ import numpy as np
 
 
 cv2.namedWindow("Thermo", cv2.WINDOW_NORMAL)
+cv2.setWindowProperty("Thermo", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
+bw, bh = 1440, 1080
+sw, sh = 480, 360
 
-r_size = [960, 1920, 3]
+r_size = [1080, 1920, 3]
+
 rimg = np.zeros(r_size, np.uint8)
 
-bw, bh = 1280, 960
-sw, sh = 640,480
+msg1 = "Press 'Esc' to escape"
+msg2 = "Press 'q' to clear"
+cv2.putText(rimg, msg1, (bw, 160), 
+            cv2.FONT_HERSHEY_DUPLEX,1, 
+            (0, 0, 255), 1, cv2.LINE_AA)
+cv2.putText(rimg, msg2, (bw, 210), 
+            cv2.FONT_HERSHEY_DUPLEX,1, 
+            (0, 0, 255), 1, cv2.LINE_AA)
+
+
 #480:640
 #bg[480:1080, 1100:1900] = rect
 
@@ -44,12 +56,16 @@ def updatebig(src):
 def updateText(txt):
     global r_size, rimg, bw
     w = r_size[1] - bw
-    h = 200
+    h = 100
     cover = np.zeros([h, w, 3], np.uint8)
     #(影像, 文字, 座標, 
     # 字型, 大小, 
     # 顏色, 線條寬度, 線條種類)
-    cv2.putText(cover, txt, (10, 30), 
+    msg = 'Last trigger: '
+    cv2.putText(cover, msg, (10, 30), 
+                cv2.FONT_HERSHEY_DUPLEX,1, 
+                (0, 0, 255), 1, cv2.LINE_AA)
+    cv2.putText(cover, txt, (10, 90), 
                 cv2.FONT_HERSHEY_DUPLEX,1, 
                 (0, 0, 255), 1, cv2.LINE_AA)
     rimg[0:h, bw:r_size[1]] = cover
@@ -58,7 +74,7 @@ def updateText(txt):
 def clearText():
     global r_size, rimg, bw
     w = r_size[1] - bw
-    h = 200
+    h = 100
     cover = np.zeros([h, w, 3], np.uint8)
     rimg[0:h, bw:r_size[1]] = cover
     return

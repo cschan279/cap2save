@@ -4,12 +4,12 @@ import numpy as np
 import cv2
 
 ################################
-arealimit = 250
+arealimit = 20
 lower_bounds = np.array([0, 0, 100])
 upper_bounds = np.array([40, 40, 255])
 
 
-roi = (0,100, 1920, 980) # x1, y1, x2, y2
+roi = (0,20, 320, 240) # x1, y1, x2, y2
 
 draw = False
 
@@ -19,9 +19,9 @@ def checkimg(img):
     global arealimit, lower_bounds, upper_bounds, draw, roi
     
     p_img = cv2.resize(img, (320, 240))
-    #c_img = p_img[y1:y2, x1:x2]
-    #mask = cv2.inRange(c_img, lower_bounds, upper_bounds)
-    mask = cv2.inRange(p_img, lower_bounds, upper_bounds)
+    c_img = p_img[20:240, 0:320]
+    mask = cv2.inRange(c_img, lower_bounds, upper_bounds)
+    #mask = cv2.inRange(p_img, lower_bounds, upper_bounds)
     _, contours,_ = cv2.findContours(mask, 
                                   cv2.RETR_EXTERNAL, 
                                   cv2.CHAIN_APPROX_SIMPLE)
