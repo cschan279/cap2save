@@ -14,7 +14,7 @@ r_size = [1080, 1920, 3]
 
 rimg = np.zeros(r_size, np.uint8)
 
-msg1 = "Press 'Esc' to escape"
+msg1 = "Press 'Esc' to exit"
 msg2 = "Press 'q' to clear"
 cv2.putText(rimg, msg1, (bw, 160), 
             cv2.FONT_HERSHEY_DUPLEX,1, 
